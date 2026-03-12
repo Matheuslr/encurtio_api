@@ -1,0 +1,57 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of the go coverage tool
+*.out
+coverage.out
+
+# Go build directories
+/bin/
+/build/
+/dist/
+
+# Dependency directories (if vendoring is used)
+vendor/
+
+# Go workspace
+go.work
+go.work.sum
+
+# Go modules checksum database
+go.sum
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test binary
+*.test
+
+# Temporary files
+tmp/
+temp/
+
+# Docker
+*.pid
+*.seed
+
+# Local configuration
+config.local.*
