@@ -1,0 +1,21 @@
+services:
+
+  cassandra:
+    image: cassandra:5
+    container_name: encurtio-cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - ./cassandra/init.cql:/docker-entrypoint-initdb.d/init.cql
+      - cassandra_data:/var/lib/cassandra
+
+  api:
+    build: .
+    container_name: encurtio-api
+    depends_on:
+      - cassandra
+    ports:
+      - "8080:8080"
+
+volumes:
+  cassandra_data:
