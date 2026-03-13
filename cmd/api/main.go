@@ -7,6 +7,7 @@ import (
 	"github.com/matheuslr/encurtio/configs"
 	"github.com/matheuslr/encurtio/internal/database"
 	"github.com/matheuslr/encurtio/internal/handler"
+	"github.com/matheuslr/encurtio/internal/middleware"
 	"github.com/matheuslr/encurtio/internal/repository"
 	"github.com/matheuslr/encurtio/internal/service"
 )
@@ -25,6 +26,8 @@ func main() {
 	defer session.Close()
 
 	router := gin.New()
+	router.Use(gin.Logger())
+	router.Use(middleware.ErrorCapture())
 	//repos
 	repo := repository.NewCassandraURLRepository(session)
 

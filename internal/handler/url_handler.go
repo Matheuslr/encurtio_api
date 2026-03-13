@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -33,10 +32,9 @@ func (h *URLHandler) Shorten(c *gin.Context) {
 	url, err := h.service.Shorten(c.Request.Context(), req.URL)
 
 	if err != nil {
-		message := fmt.Sprintln("failed to shorten url: ", err)
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": message,
-		})
+		// attach error to context so middleware can log it
+		c.Error(err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "internal server error"})
 		return
 	}
 
