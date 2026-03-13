@@ -32,14 +32,15 @@ func main() {
 	repo := repository.NewCassandraURLRepository(session)
 
 	//services
-	service := service.NewURLService(repo)
+	service := service.NewURLService(repo, *cfg)
 
 	//handlres
 	healthHandler := handler.NewHealthHandler()
 	urlHandler := handler.NewURLHandler(service)
 
 	//routes
-	router.POST("/api/v1/shorten", urlHandler.Shorten)
+	router.POST("/api/v1/url/shorten", urlHandler.Shorten)
+	router.GET("/:code", urlHandler.GetRedirectURL)
 	router.GET("/api/v1/health", healthHandler.Health)
 
 	router.Run(":" + cfg.API.Port)

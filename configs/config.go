@@ -19,6 +19,7 @@ type CassandraConfig struct {
 
 type APIConfig struct {
 	Port string
+	URL  string
 }
 
 func Load() *Config {
@@ -34,6 +35,7 @@ func Load() *Config {
 		},
 		API: APIConfig{
 			Port: getEnv("APP_PORT", "8080"),
+			URL:  getEnv("APP_URL", "http://localhost:8080"),
 		},
 	}
 }

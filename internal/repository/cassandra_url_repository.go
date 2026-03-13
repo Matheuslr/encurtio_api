@@ -33,7 +33,7 @@ func (r *CassandraURLRepository) FindByShortCode(ctx context.Context, code strin
 	var url model.URL
 
 	query := `
-		SELETC short_code, original_url, created_at
+		SELECT short_code, original_url, created_at
 		FROM urls
 		WHERE short_code = ? 
 	`
