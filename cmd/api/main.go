@@ -27,6 +27,7 @@ func main() {
 
 	router := gin.New()
 	router.Use(gin.Logger())
+	router.Use(middleware.CORS())
 	router.Use(middleware.ErrorCapture())
 	//repos
 	repo := repository.NewCassandraURLRepository(session)
